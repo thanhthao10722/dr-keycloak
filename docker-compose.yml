@@ -1,0 +1,31 @@
+version: '3'
+
+volumes:
+  postgres-data:
+
+services:
+  postgres:
+    restart: always
+    image: postgres
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: keycloak_db
+      POSTGRES_USER: keycloak_db
+      POSTGRES_PASSWORD: YUWLWGRNwKsAFFgtdmZdGjG7SAs
+  keycloak:
+    image: jboss/keycloak
+    environment:
+      DB_VENDOR: postgres
+      DB_USER: keycloak_db
+      DB_DATABASE: keycloak_db
+      DB_PASSWORD: YUWLWGRNwKsAFFgtdmZdGjG7SAs
+      DB_ADDR: postgres
+      PROXY_ADDRESS_FORWARDING: "true"
+      DB_PORT: '5432'
+      KEYCLOAK_USER: root
+      KEYCLOAK_PASSWORD: ahth3leingohsieMeiqu
+    ports:
+      - 8180:8080
+    volumes:
+      - ../dr-keycloak-theme:/opt/jboss/keycloak/themes/custom_theme
