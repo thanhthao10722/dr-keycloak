@@ -13,8 +13,10 @@ services:
       POSTGRES_DB: keycloak_db
       POSTGRES_USER: keycloak_db
       POSTGRES_PASSWORD: YUWLWGRNwKsAFFgtdmZdGjG7SAs
-  keycloak:
+  dr-keycloak:
     image: jboss/keycloak
+    container_name: dr-keycloak
+    restart: always
     environment:
       DB_VENDOR: postgres
       DB_USER: keycloak_db
